@@ -218,7 +218,7 @@ def main():
     optimizer = TrafficSignalOptimizer()
     
     # Example usage
-    image_path = 'input/input4.jpg'  # Replace with your image path
+    image_path = 'input/input12.jpg'  # Replace with your image path
     
     try:
         # Detect vehicles
