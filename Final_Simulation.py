@@ -26,7 +26,7 @@ from traffic_management_system import TrafficManagementSystem
 
 # Default values of signal times
 defaultRed = 150
-defaultYellow = 5
+defaultYellow = 7
 defaultGreen = 20
 defaultMinimum = 10
 defaultMaximum = 60
