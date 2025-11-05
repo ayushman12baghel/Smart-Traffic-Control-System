@@ -27,7 +27,7 @@ from traffic_management_system import TrafficManagementSystem
 # Default values of signal times
 defaultRed = 150
 defaultYellow = 7
-defaultGreen = 20
+defaultGreen = 15
 defaultMinimum = 10
 defaultMaximum = 60
 tms = TrafficManagementSystem()
@@ -71,10 +71,10 @@ noOfRickshaws = 0
 noOfLanes = 2
 
 # Red signal time at which cars will be detected at a signal
-detectionTime = 10
+detectionTime = 8
 
-speeds = {'car':0.6, 'bus':0.5, 'truck':0.5, 'rickshaw':0.6, 'bike':0.7}  # even slower
-
+speeds = {'car':0.11, 'bus':0.08, 'truck':0.08, 'rickshaw':0.12, 'bike':0.15}  # even slower
+# speeds = {'car':0.15, 'bus':0.12, 'truck':0.12, 'rickshaw':0.16, 'bike':0.18,'ambulance':0.24}
 # Coordinates of start
 x = {'right':[0,0,0], 'down':[755,727,697], 'left':[1400,1400,1400], 'up':[602,627,657]}    
 y = {'right':[348,370,398], 'down':[0,0,0], 'left':[498,466,436], 'up':[800,800,800]}
@@ -510,7 +510,7 @@ class Main:
     screenSize = (screenWidth, screenHeight)
 
     # Setting background image i.e. image of intersection
-    background = pygame.image.load('images/mod_int_snow.png')
+    background = pygame.image.load('images/mod_int_final.jpg')
 
     screen = pygame.display.set_mode(screenSize)
     pygame.display.set_caption("SIMULATION")

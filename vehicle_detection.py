@@ -65,7 +65,8 @@ class VehicleDetectionSystem:
             'trucks': 0,
             'buses': 0,
             'bikes': 0,
-            'rickshaws': 0  # Note: No direct rickshaw detection
+            'rickshaws': 0 ,
+             'road width':15 # Note: No direct rickshaw detection
         }
         
         # Get detections above confidence threshold
@@ -218,7 +219,7 @@ def main():
     optimizer = TrafficSignalOptimizer()
     
     # Example usage
-    image_path = 'input/input12.jpg'  # Replace with your image path
+    image_path = 'input/input7.jpg'  # Replace with your image path
     
     try:
         # Detect vehicles

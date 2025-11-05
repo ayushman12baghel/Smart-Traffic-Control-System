@@ -11,16 +11,18 @@ import os
 import requests
 
 class PhoneCameraCapture:
-    def __init__(self, ip_address='http://192.168.1.100:4747'):
+    def __init__(self, ip_address='http://192.168.1.100:4747', rotate=True):
         """
         Initialize phone camera capture using IP Webcam
         
         Args:
             ip_address (str): IP address of your phone's camera streaming app
+            rotate (bool): Whether to rotate the frames to vertical orientation
         """
         self.ip_address = ip_address
         self.stream_url = f'{ip_address}/video'
         self.capture = None
+        self.rotate = rotate
 
     def connect_camera(self):
         """
@@ -45,6 +47,20 @@ class PhoneCameraCapture:
             print(f"Connection error: {e}")
             return False
 
+    def rotate_frame(self, frame):
+        """
+        Rotate the frame to convert horizontal to vertical orientation
+        
+        Args:
+            frame (numpy.ndarray): Input frame from camera
+            
+        Returns:
+            numpy.ndarray: Rotated frame
+        """
+        # Rotate the frame 90 degrees clockwise to convert from horizontal to vertical
+        rotated_frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+        return rotated_frame
+
     def capture_image(self, output_path='phone_camera_input.jpg'):
         """
         Capture an image from the phone camera
@@ -67,6 +83,10 @@ class PhoneCameraCapture:
             if not ret:
                 print("Failed to capture image")
                 return False
+            
+            # Rotate the frame if needed
+            # if self.rotate:
+            #     frame = self.rotate_frame(frame)
             
             # Ensure directory exists
             os.makedirs(os.path.dirname(output_path) or '.', exist_ok=True)
@@ -144,7 +164,8 @@ class VehicleDetectionSystem:
             'trucks': 0,
             'buses': 0,
             'bikes': 0,
-            'rickshaws': 0  # Note: No direct rickshaw detection
+            'rickshaws': 0 ,
+             'road width': 18 # Note: No direct rickshaw detection
         }
         
         # Get detections above confidence threshold
@@ -332,7 +353,8 @@ def main():
     os.makedirs('output', exist_ok=True)
     
     # Create instances
-    phone_camera = PhoneCameraCapture(ip_address='http://192.0.0.4:8080')  # Replace with your IP
+    # Added rotate=True parameter to enable the rotation feature
+    phone_camera = PhoneCameraCapture(ip_address='http://192.0.0.4:8080', rotate=True)  # Replace with your IP
     detector = VehicleDetectionSystem()
     optimizer = TrafficSignalOptimizer()
     
